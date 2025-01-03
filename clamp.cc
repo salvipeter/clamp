@@ -156,8 +156,7 @@ BSCurve PeriodicCurve::clamp(double u) const {
   std::fill_n(std::back_inserter(k), p, u);
   for (size_t i = 0; i < c.knots.size(); ++i)
     k.push_back(c.getKnot(span + i));
-  auto last = k.back();
-  std::fill_n(std::back_inserter(k), p, last);
+  k.push_back(k.back());
 
   PointVector cpts;
   for (size_t i = 0; i < k.size() - p - 1; ++i)
