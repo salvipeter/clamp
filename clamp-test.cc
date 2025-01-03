@@ -71,7 +71,7 @@ int main() {
   pc.n = 3;
   pc.knots = { 1, 2, 5, 8, 15 };
   pc.cp = { { 0, 0, 0 }, { 1, 0, 0 }, { 1, 1, 0 }, { 0, 1, 0 } };
-  double u = 2.3;
+  double u = 1;
 
   auto clamped = pc.clamp(u);
   writeBSCurve(clamped, "/tmp/clamped.obj");

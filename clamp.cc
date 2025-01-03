@@ -106,6 +106,9 @@ Point3D PeriodicCurve::derivatives(double u, size_t d, VectorVector &der) const
 }
 
 PeriodicCurve PeriodicCurve::insertKnot(double u, size_t r) const {
+  if (u == knots.front())
+    return insertKnot(knots.back(), r);
+
   size_t s;
   size_t k = findSpan(u, &s);
   if (s >= p)
