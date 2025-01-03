@@ -7,7 +7,7 @@ using namespace Geometry;
 void writeBSCurve(const BSCurve &pc, std::string filename, size_t resolution = 100) {
   std::ofstream f(filename);
   for (size_t i = 0; i < resolution; ++i) {
-    double u = (double)i / resolution;
+    double u = (double)i / (resolution - 1);
     u = pc.basis().knots().front() + u * (pc.basis().knots().back() - pc.basis().knots().front());
     f << "v " << pc.eval(u) << std::endl;
   }
