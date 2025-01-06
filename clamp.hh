@@ -13,6 +13,8 @@ struct PeriodicCurve
 
   size_t findSpan(double u, size_t *multi = nullptr) const;
   void basisFunctionDerivatives(size_t i, double u, size_t d, Geometry::DoubleMatrix &der) const;
+  double normalizeParameter(double u) const;
+  Geometry::Point3D eval(double u) const;
   Geometry::Point3D derivatives(double u, size_t d, Geometry::VectorVector &der) const;
   PeriodicCurve insertKnot(double u, size_t r) const;
 

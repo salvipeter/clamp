@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <limits>
 
 using namespace Geometry;
@@ -87,10 +88,20 @@ void PeriodicCurve::basisFunctionDerivatives(size_t i, double u, size_t d, Doubl
   }
 }
 
+double PeriodicCurve::normalizeParameter(double u) const {
+  double d = knots.back() - knots.front();
+  double t = std::fmod(u - knots.front(), d);
+  return knots.front() + std::fmod(t + d, d);
+}
+
+Point3D PeriodicCurve::eval(double u) const {
+  VectorVector der;
+  return derivatives(u, 0, der);
+}
+
 Point3D PeriodicCurve::derivatives(double u, size_t d, VectorVector &der) const
 {
-  if (u >= knots.back()) // >= instead of == because of numerical problems
-    u = knots.front();
+  u = normalizeParameter(u);
   size_t du = std::min(d, p);
   der.clear();
   size_t span = findSpan(u);

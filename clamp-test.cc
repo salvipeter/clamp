@@ -22,8 +22,7 @@ void writeCurve(const PeriodicCurve &pc, std::string filename, size_t resolution
   for (size_t i = 0; i < resolution; ++i) {
     double u = (double)i / resolution;
     u = pc.knots.front() + u * (pc.knots.back() - pc.knots.front());
-    VectorVector der;
-    f << "v " << pc.derivatives(u, 0, der) << std::endl;
+    f << "v " << pc.eval(u) << std::endl;
   }
   f << 'l';
   for (size_t i = 1; i <= resolution; ++i)
